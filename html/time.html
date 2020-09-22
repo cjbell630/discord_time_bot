@@ -1,0 +1,11 @@
+<p><span id="datetime"></span></p>
+<script>
+    const queryString = window.location.search;
+    console.log(queryString);
+    const urlParams = new URLSearchParams(queryString);
+    const name = urlParams.get("name")
+    const time_to_convert =  urlParams.get("time_to_convert")
+    const difference = urlParams.get("difference")
+    document.getElementById("datetime").innerHTML = time_to_convert + " " + name + "\'s time is " +
+        (((new Date()).getHours() + parseInt(difference)) % 24) + time_to_convert.split(":")[1] + " your time"
+</script>
