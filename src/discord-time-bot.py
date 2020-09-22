@@ -1,4 +1,5 @@
 import discord
+from datetime import timedelta
 
 TOKEN = "REPLACE WITH TOKEN"
 
@@ -25,7 +26,7 @@ async def on_message(message):
         if message.content.startswith("!time help"):
             await message.channel.send(INSTRUCTIONS)
         elif message.content.startswith("!time convert "):
-            data = [int(i) for i in message.content[14:].split(" ")]
+            data = [int(p) for p in (t.split(":") for t in message.content[14:].split(" "))]
             data.append(message.author.name)
             generate_link(data)
             await message.channel.send(file=discord.File("time.html"))
@@ -33,16 +34,11 @@ async def on_message(message):
 
 # TODO: make dif store a time value (ex 12:30 means 12 hours and 30 mins difference from UTC)
 def generate_link(data):
-    dif = str(data[0] - data[2])
-    username = data[3]
-    formatted_des_min = (str(data[1]) if len(str(data[1])) > 1 else "0" + str(data[1]))
-    hour_to_convert = str(data[0])
-    file = open("time.html", "w")
-    file.write(HTML[0] + hour_to_convert + ":" + formatted_des_min + " " + username + HTML[1] + dif + HTML[
-        2] + formatted_des_min + HTML[3])
-    file.close()
+    difference = timedelta(hours=data[1][0], minutes=data[1][1]) - timedelta(hours=data[0][0], minutes=data[0][1])
+    dif = "{0:.0f}:{1:.0f}".format(difference.seconds / 3600, (difference.seconds / 60) % 60)
+    username = data[2]
     return "https://cjbell630.github.io/discord_time_bot/html/time.html?name=" + username + \
-           "&og_time=" + hour_to_convert + ":" + formatted_des_min + "&difference=" + dif
+           "&og_time=" + str(data[0][0]) + ":" + str(data[0][1]) + "&difference=" + dif
 
 
 client.run(TOKEN)
