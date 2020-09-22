@@ -41,7 +41,7 @@ message was sent and the target time in the sender's time zone.
 
 For example, if it was 10:00 AM, and the time increased by one
 hour at 3:00 AM in my time zone (ex DST), and there was some
-event at 2:00 PM the next dayI wanted to tell people about,
+event at 2:00 PM the next day I wanted to tell people about,
 I would run this command:
 
     !time convert 14:00 10:00
