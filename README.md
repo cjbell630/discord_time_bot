@@ -46,7 +46,7 @@ I would run this command:
 
     !time convert 14:00 10:00
     
-Given this, the bot would calculate that the was referring to
+Given this, the bot would calculate that the sender was referring to
 an event taking place in 22 hours. This is wrong, however,
 because one hour is skipped over that night. In reality, the
 event is in 21 hours. Even if the user viewing the URL also
