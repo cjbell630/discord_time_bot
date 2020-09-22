@@ -31,6 +31,7 @@ async def on_message(message):
             await message.channel.send(file=discord.File("time.html"))
 
 
+# TODO: make dif store a time value (ex 12:30 means 12 hours and 30 mins difference from UTC)
 def generate_link(data):
     dif = str(data[0] - data[2])
     username = data[3]
