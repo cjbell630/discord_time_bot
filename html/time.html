@@ -1,19 +1,21 @@
 <html lang="en">
 <head>
     <!--<meta property="og:image" content="poggers.jpg">-->
-    <title>this is the title</title>
+    <title>v0.2.0</title>
 </head>
 <body>
 <p><span id="datetime">Something went wrong...</span></p>
 <script>
-    const queryString = window.location.search;
+    const queryString = window.location.search
     console.log(queryString);
     const urlParams = new URLSearchParams(queryString);
-    const name = urlParams.get("name")
+    const name = urlParams.get("name");
     const ogTime = urlParams.get("og_time")
     const difference = urlParams.get("difference")
-    document.getElementById("datetime").innerHTML = ogTime + " " + name + "\'s time is " +
-        (((new Date()).getHours() + parseInt(difference)) % 24) + ":" + ogTime.split(":")[1] + " your time." + "<br/><br/>" +
+    const convertedMinutes = new Date().getMinutes() + parseInt(difference.split(":")[1])
+    const convertedHours = new Date().getHours() + parseInt(difference.split(":")[0] + (convertedMinutes>59? 1 : 0)) % 24
+    document.getElementById("datetime").innerHTML = ogTime + " " + name + "\'s time is " + (convertedHours%24) + ":" + (convertedMinutes%60)
+         + " your time." + "<br/><br/>" +
         "Remember, the times listed are in 24 hour time!!!<br/><br/><br/>" +
         "Also, this may not work for all time zone conversions, especially when working with time zones that are not a " +
         "whole number of hours off Greenwich."
