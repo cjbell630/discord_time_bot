@@ -4,8 +4,11 @@
     console.log(queryString);
     const urlParams = new URLSearchParams(queryString);
     const name = urlParams.get("name")
-    const time_to_convert =  urlParams.get("time_to_convert")
+    const ogTime = urlParams.get("og_time")
     const difference = urlParams.get("difference")
-    document.getElementById("datetime").innerHTML = time_to_convert + " " + name + "\'s time is " +
-        (((new Date()).getHours() + parseInt(difference)) % 24) + time_to_convert.split(":")[1] + " your time"
+    document.getElementById("datetime").innerHTML = ogTime + " " + name + "\'s time is " +
+        (((new Date()).getHours() + parseInt(difference)) % 24) + ":" + ogTime.split(":")[1] + " your time." + "<br/><br/>" +
+        "Remember, the times listed are in 24 hour time!!!<br/><br/><br/>" +
+        "Also, this may not work for all time zone conversions, especially when working with time zones that are not a " +
+        "whole number of hours off Greenwich."
 </script>
