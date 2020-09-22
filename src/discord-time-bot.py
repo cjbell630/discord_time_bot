@@ -45,9 +45,9 @@ def generate_link(data: list) -> str:
     """
     Generates a link that can be used to convert the timezone of the given time.
     :param data: a list containing
-        [1] a list of ints containing the hours and minutes of the target time
-        [2] a list of ints containing the hours and minutes of the sender's current local time
-        [3] a str containing the sender's username
+        [0] a list of ints containing the hours and minutes of the target time
+        [1] a list of ints containing the hours and minutes of the sender's current local time
+        [2] a str containing the sender's username
     :return: a str containing the generated URL
     """
     og_time = str(data[0][0]) + ":" + str(data[0][1])
