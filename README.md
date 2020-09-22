@@ -33,7 +33,7 @@ That's the reason for the "current local time" parameter to
 the bot. With this, the code can extract how long it is until
 the specified time, and simply give a client-side script the
 time the message was called and the duration from that time
-to display. However, this is not without it's problems.
+to display. However, this is not without its problems.
 
 Any time-skip (such as Daylight Savings time or Leap Day) will
 cause this method to fail if it falls between the time the
